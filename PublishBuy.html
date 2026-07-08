@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>发布求购</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            width: 96%;
+            max-width: 900px;
+            margin: 30px auto;
+            font-size: 17px;
+        }
+        /* 顶部标题栏 */
+        .top-box {
+            border: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+        }
+        /* 表单行 */
+        .form-row {
+            border: 1px solid #222;
+            border-top: none;
+            padding: 10px 16px;
+        }
+        input, select {
+            width: 72%;
+            border: none;
+            border-bottom: 1px solid #222;
+            font-size: 17px;
+            margin: 6px 0;
+            outline: none;
+        }
+        /* 留言标题栏 */
+        .msg-title {
+            border: 1px solid #222;
+            padding: 10px 16px;
+            margin-top: 25px;
+        }
+        /* 留言网格布局 */
+        .msg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            border: 1px solid #222;
+            border-top: none;
+            padding: 16px;
+        }
+        .msg-card {
+            border: 1px solid #222;
+            padding: 10px;
+            text-align: center;
+        }
+        .msg-content {
+            border: 1px solid #222;
+            height: 90px;
+            margin-top: 8px;
+        }
+        /* 留言输入区域 */
+        .input-box {
+            border: 1px solid #222;
+            border-top: none;
+            padding: 16px;
+        }
+        textarea {
+            width: 100%;
+            height: 170px;
+            border: 1px solid #222;
+            padding: 8px;
+            font-size: 17px;
+            margin-top: 8px;
+        }
+        .btn-right {
+            text-align: right;
+            margin-top: 10px;
+        }
+        button {
+            padding: 6px 18px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部栏：返回按钮 + 标题 + 折叠下拉 -->
+    <div class="top-box">
+        <button id="backBtn">返回</button>
+        <span>求购详情</span>
+        <span>▼</span>
+    </div>
+
+    <!-- 表单区域 -->
+    <div id="formContainer">
+        <div class="form-row">物品名称 <input type="text"></div>
+        <div class="form-row">预算 <input type="text"></div>
+        <div class="form-row">成色 <input type="text"></div>
+        <div class="form-row">需求描述
+            <select>
+                <option>请选择分类</option>
+                <option>教材书本</option>
+                <option>数码电子</option>
+                <option>日用百货</option>
+            </select>
+        </div>
+        <div class="form-row">紧求描述
+            <select>
+                <option>请选择</option>
+                <option>正常收购</option>
+                <option>紧急求购</option>
+                <option>价格可小刀</option>
+            </select>
+        </div>
+        <div class="form-row">紧急程度 <input type="text"></div>
+        <div class="form-row">发布人 <input type="text"></div>
+    </div>
+
+    <!-- 历史留言区 -->
+    <div class="msg-title">历史留言</div>
+    <div class="msg-grid" id="messageList">
+        <div class="msg-card">
+            <div>👤 留言人</div>
+            <div class="msg-content"></div>
+        </div>
+        <div class="msg-card">
+            <div>👤 留言人</div>
+            <div class="msg-content"></div>
+        </div>
+        <div class="msg-card">
+            <div>👤 留言人</div>
+            <div class="msg-content"></div>
+        </div>
+        <div class="msg-card">
+            <div>👤 留言人</div>
+            <div class="msg-content"></div>
+        </div>
+        <div class="msg-card">
+            <div>👤 留言人</div>
+            <div class="msg-content"></div>
+        </div>
+        <div class="msg-card">
+            <div>👤 留言人</div>
+            <div class="msg-content"></div>
+        </div>
+    </div>
+
+    <!-- 留言输入框 -->
+    <div class="input-box">
+        <div>留言输入</div>
+        <textarea id="msgInput"></textarea>
+        <div class="btn-right">
+            <button id="submitBtn">提交响应</button>
+        </div>
+    </div>
+
+<script>
+    // 1. 返回按钮：跳回 buy.html
+    document.getElementById('backBtn').onclick = function() {
+        location.href = "buy.html";
+    }
+
+    // 2. 右上角下拉箭头：折叠/展开表单
+    document.querySelector('.top-box span:last-child').onclick = function() {
+        const form = document.getElementById('formContainer');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // 3. 提交留言，自动新增留言卡片
+    document.getElementById('submitBtn').onclick = function() {
+        let text = document.getElementById('msgInput').value.trim();
+        if (!text) return;
+
+        let list = document.getElementById('messageList');
+        let newCard = document.createElement('div');
+        newCard.className = "msg-card";
+        newCard.innerHTML = `
+            <div>👤 留言人</div>
+            <div class="msg-content" style="display:flex;align-items:center;justify-content:center;">${text}</div>
+        `;
+        list.appendChild(newCard);
+        // 清空输入框
+        document.getElementById('msgInput').value = "";
+    }
+</script>
+</body>
+</html>

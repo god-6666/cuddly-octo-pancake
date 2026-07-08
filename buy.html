@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>校园闲置求购广场</title>
+    <style>
+        .container{width:850px;margin:30px auto;}
+        .title-box{border:1px solid #333;padding:12px;text-align:center;font-size:24px;margin-bottom:20px;}
+        .top-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px;}
+        button{padding:8px 16px;font-size:16px;border:1px solid #333;background:#fff;}
+        select{padding:8px;font-size:16px;border:1px solid #333;flex-grow:1;}
+        .item-card{border:1px solid #333;padding:16px;margin:12px 0;display:flex;gap:20px;align-items:flex-start;justify-content:space-between;}
+        .img-empty{width:80px;height:80px;border:1px solid #333;flex-shrink:0;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title-box">校园闲置求购广场</div>
+
+    <div class="top-nav">
+        <button id="backHome">返回主页</button>
+        <select>
+            <option>物品分类</option>
+        </select>
+        <!-- 点击跳转到详情页面 -->
+        <button id="publishBtn">发布求购</button>
+    </div>
+
+    <!-- 求购条目 -->
+    <div class="item-card">
+        <div class="img-empty"></div>
+        <div>
+            <p>求购物品</p>
+            <p>预算</p>
+            <p>发布人：</p>
+        </div>
+        <button class="look-detail">查看详情</button>
+    </div>
+    <div class="item-card">
+        <div class="img-empty"></div>
+        <div>
+            <p>求购物品</p>
+            <p>预算</p>
+            <p>发布人：</p>
+        </div>
+        <button class="look-detail">查看详情</button>
+    </div>
+    <div class="item-card">
+        <div class="img-empty"></div>
+        <div>
+            <p>求购物品</p>
+            <p>预算</p>
+            <p>发布人：</p>
+        </div>
+        <button class="look-detail">查看详情</button>
+    </div>
+    <div class="item-card">
+        <div class="img-empty"></div>
+        <div>
+            <p>求购物品</p>
+            <p>预算</p>
+            <p>发布人：</p>
+        </div>
+        <button class="look-detail">查看详情</button>
+    </div>
+</div>
+
+<script>
+    // 返回网站首页（这里改成真实跳转，不是弹窗）
+    document.getElementById('backHome').onclick = function(){
+        location.href = "index.html";
+    }
+
+    // 发布求购跳转
+    document.getElementById('publishBtn').onclick = function(){
+        location.href = "PublishBuy.html";
+    }
+
+    // 查看详情跳转
+    document.querySelectorAll('.look-detail').forEach(btn=>{
+        btn.onclick = function(){
+            location.href = "detail.html";
+        }
+    })
+</script>
+    
